@@ -1,0 +1,5 @@
+Flask
+requests
+parsel
+bs4
+minify-html

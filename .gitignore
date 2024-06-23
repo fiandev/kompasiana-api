@@ -1,0 +1,9 @@
+**/__pycache__/
+/tests
+/node_modules
+/vendor
+.env
+.env.local
+.env.test
+.env.development
+*.lock.json
