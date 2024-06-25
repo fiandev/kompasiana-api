@@ -20,13 +20,11 @@ class PostController:
                     images.append(image)
             
             return api_response_success({
-                "data": {
-                    "title": elements.find("h1", class_="title").get_text().strip(),
-                    "tag": elements.find(class_="artikel--tag").find("span").get_text().strip(),
-                    "thumbnail": elements.find(class_="slidesBig").find("img").get("src"),
-                    "images": images,
-                    "content": minify_html.minify(str(elements.find(class_="read-content")).replace('"', "\"").replace("  ", ""), minify_js=True, minify_css=True, remove_processing_instructions=True),
-                }
+                "title": elements.find("h1", class_="title").get_text().strip(),
+                "tag": elements.find(class_="artikel--tag").find("span").get_text().strip(),
+                "thumbnail": elements.find(class_="slidesBig").find("img").get("src"),
+                "images": images,
+                "content": minify_html.minify(str(elements.find(class_="read-content")).replace('"', "\"").replace("  ", ""), minify_js=True, minify_css=True, remove_processing_instructions=True),
             })
         except Exception as err:
             return api_response_error(str(err))

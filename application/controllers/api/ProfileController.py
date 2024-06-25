@@ -21,14 +21,11 @@ class ProfileController:
                     "slug": post.find(class_="artikel--img").find("a").get("href").replace(f"{ HOST_URL }/{ username }/", "").split("/")[0],
                 })
             return api_response_success({
-                "message": "success",
-                "data": {
-                    "point": int(elements.find(class_="poin-total").find("b").get_text()),
-                    "level": elements.find(class_="poin-pangkat").get_text(),
-                    "name": elements.find("title").get_text().split("-")[0].replace("Halaman Artikel Profil", "").strip(),
-                    "avatar": elements.find(class_="user-img").find("img").get("src"),
-                    "posts": posts
-                }
+                "point": int(elements.find(class_="poin-total").find("b").get_text()),
+                "level": elements.find(class_="poin-pangkat").get_text(),
+                "name": elements.find("title").get_text().split("-")[0].replace("Halaman Artikel Profil", "").strip(),
+                "avatar": elements.find(class_="user-img").find("img").get("src"),
+                "posts": posts
             })
         except Exception as err:
             return api_response_error(str(err))
