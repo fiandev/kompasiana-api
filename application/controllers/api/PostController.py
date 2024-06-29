@@ -6,6 +6,15 @@ HOST_URL = "https://www.kompasiana.com"
 
 class PostController:
     @staticmethod
+    def get_content (elements):
+        # remove ads
+        for item in elements.select(".read-artikel *"):
+            if not item.name == "p" or (item.has_attr("class") and "img-read" in item["class"]):
+                # item.decompose()
+                pass
+        article = str(elements.find(_class="read-artikel"))
+        return minify_html.minify(article.replace('"', "\"").replace("  ", ""), minify_js=True, minify_css=True, remove_processing_instructions=True)
+    @staticmethod
     def show (username: str, prefix: str, slug: str):
         try:
             if not prefix or not slug or not username:
@@ -24,7 +33,7 @@ class PostController:
                 "tag": elements.find(class_="artikel--tag").find("span").get_text().strip(),
                 "thumbnail": elements.find(class_="slidesBig").find("img").get("src"),
                 "images": images,
-                "content": minify_html.minify(str(elements.find(class_="read-content")).replace('"', "\"").replace("  ", ""), minify_js=True, minify_css=True, remove_processing_instructions=True),
+                "content": PostController.get_content(elements),
             })
         except Exception as err:
             return api_response_error(str(err))

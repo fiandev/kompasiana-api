@@ -17,8 +17,8 @@ class ProfileController:
                 posts.append({
                     "title": post.find(class_="artikel--content").find("h2").get_text().strip(),
                     "thumbnail": post.find(class_="artikel--img").find("img").get("src"),
-                    "prefix": post.find(class_="artikel--img").find("a").get("href").replace(f"{ HOST_URL }/{ username }/", "").split("/").pop(),
-                    "slug": post.find(class_="artikel--img").find("a").get("href").replace(f"{ HOST_URL }/{ username }/", "").split("/")[0],
+                    "slug": post.find(class_="artikel--img").find("a").get("href").replace(f"{ HOST_URL }/{ username }/", "").split("/").pop(),
+                    "prefix": post.find(class_="artikel--img").find("a").get("href").replace(f"{ HOST_URL }/{ username }/", "").split("/")[0],
                 })
             return api_response_success({
                 "point": int(elements.find(class_="poin-total").find("b").get_text()),
